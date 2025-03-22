@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{54D35F73-64D4-4811-8548-3AF60F68FF90}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{6DE8F18C-43D2-4C17-A792-206B9FFC4422}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{F9E877FB-2AFA-4111-98D0-480504BD6919}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EndPoints", "EndPoints", "{7BF18E71-1B1A-46A3-95F3-EE0CF682BCAE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{997CDB10-BD73-42D7-B984-A72F7ED44615}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blog", "Blog", "{4446F04E-7838-4348-8AB9-52179203D46A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogModule", "src\Modules\Blog\BlogModule\BlogModule.csproj", "{19D05308-F9E7-4F63-B091-323AD02F342E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19D05308-F9E7-4F63-B091-323AD02F342E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19D05308-F9E7-4F63-B091-323AD02F342E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19D05308-F9E7-4F63-B091-323AD02F342E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19D05308-F9E7-4F63-B091-323AD02F342E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F9E877FB-2AFA-4111-98D0-480504BD6919} = {54D35F73-64D4-4811-8548-3AF60F68FF90}
+		{7BF18E71-1B1A-46A3-95F3-EE0CF682BCAE} = {54D35F73-64D4-4811-8548-3AF60F68FF90}
+		{997CDB10-BD73-42D7-B984-A72F7ED44615} = {54D35F73-64D4-4811-8548-3AF60F68FF90}
+		{4446F04E-7838-4348-8AB9-52179203D46A} = {F9E877FB-2AFA-4111-98D0-480504BD6919}
+		{19D05308-F9E7-4F63-B091-323AD02F342E} = {4446F04E-7838-4348-8AB9-52179203D46A}
+	EndGlobalSection
+EndGlobal
