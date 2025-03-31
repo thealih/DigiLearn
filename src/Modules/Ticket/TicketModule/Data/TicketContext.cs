@@ -10,6 +10,16 @@ class TicketContext : DbContext
         
     }
 
-    public DbSet<Ticket> Ticket { get; set; }
+    public DbSet<Ticket> Tickets { get; set; }
     public DbSet<TicketMessage> TicketMessages { get; set; }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+        base.OnConfiguring(optionsBuilder);
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+    }
 }
