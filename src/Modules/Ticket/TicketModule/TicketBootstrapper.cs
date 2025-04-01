@@ -14,7 +14,7 @@ public static class TicketBootstrapper
         {
             option.UseSqlServer(config.GetConnectionString("BlogContext"));
         });
-        services.AddScoped<ITicketService , TicketService>()
+        services.AddScoped<ITicketService, TicketService>();
         services.AddAutoMapper(typeof(MapperProfile).Assembly);
         return services;
     }
