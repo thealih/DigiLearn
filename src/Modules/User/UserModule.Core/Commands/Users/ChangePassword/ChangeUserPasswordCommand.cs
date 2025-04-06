@@ -1,0 +1,53 @@
+﻿using Common.Application;
+using Common.Application.SecurityUtil;
+using FluentValidation;
+using Microsoft.EntityFrameworkCore;
+using UserModule.Data;
+
+namespace UserModule.Core.Commands.Users.ChangePassword;
+
+public class ChangeUserPasswordCommand:IBaseCommand
+{
+    public Guid UserId { get; set; }
+    public string CurrentPassword { get; set; }
+    public string NewPassword { get; set; }
+}
+public class ChangeUserPasswordCommandHandler:IBaseCommandHandler<ChangeUserPasswordCommand>
+{
+    private UserContext _userContext;
+
+    public ChangeUserPasswordCommandHandler(UserContext userContext)
+    {
+        _userContext = userContext;
+    }
+
+    public async Task<OperationResult> Handle(ChangeUserPasswordCommand request, CancellationToken cancellationToken)
+    {
+        var user = await _userContext.Users.FirstOrDefaultAsync(f => f.Id == request.UserId , cancellationToken);
+        if (user == null)
+        {
+            return OperationResult.NotFound();
+        }
+
+        if (Sha256Hasher.IsCompare(user.Password , request.CurrentPassword))
+        {
+            
+        }
+
+        return OperationResult.Error("کلمه ی عبور نامعتبر است.");
+    }
+}
+public class ChangeUserPasswordCommandValidator:AbstractValidator<ChangeUserPasswordCommand>
+{
+    public ChangeUserPasswordCommandValidator()
+    {
+        RuleFor(f => f.CurrentPassword)
+            .NotEmpty()
+            .NotNull();
+
+        RuleFor(f => f.NewPassword)
+            .NotEmpty()
+            .NotNull()
+            .MinimumLength(6);
+    }
+}

@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogModule.Unit.Test", "src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Query", "src\Common\Common.Query\Common.Query.csproj", "{17121362-45E5-4AED-8A15-46A03936EA78}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigiLearn.Web", "src\EndPoints\DigiLearn.Web\DigiLearn.Web.csproj", "{C0310B6B-26DB-496B-A8B3-DE680479788C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{17121362-45E5-4AED-8A15-46A03936EA78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17121362-45E5-4AED-8A15-46A03936EA78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17121362-45E5-4AED-8A15-46A03936EA78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0310B6B-26DB-496B-A8B3-DE680479788C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0310B6B-26DB-496B-A8B3-DE680479788C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0310B6B-26DB-496B-A8B3-DE680479788C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0310B6B-26DB-496B-A8B3-DE680479788C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,5 +105,6 @@ Global
 		{A5CE362B-8412-4458-8835-02505AE959DD} = {35C89915-1D01-4A22-85DD-5A93C1ADF001}
 		{F9393A96-E864-4025-B767-C3DD26450EE2} = {4446F04E-7838-4348-8AB9-52179203D46A}
 		{17121362-45E5-4AED-8A15-46A03936EA78} = {997CDB10-BD73-42D7-B984-A72F7ED44615}
+		{C0310B6B-26DB-496B-A8B3-DE680479788C} = {7BF18E71-1B1A-46A3-95F3-EE0CF682BCAE}
 	EndGlobalSection
 EndGlobal
