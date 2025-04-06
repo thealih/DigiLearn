@@ -16,7 +16,7 @@ public interface ITicketService
     Task<OperationResult> ClosedTicket(Guid ticketId);
 
     Task<TicketDto> GetTicket(Guid ticketId);
-    Task<TicketDto> GetTicketBtFilter(TicketFilterParams filterParams);
+    Task<TicketFilterResult> GetTicketByFilter(TicketFilterParams filterParams);
 }
 
  class TicketService : ITicketService
@@ -84,12 +84,26 @@ public interface ITicketService
         return _mapper.Map<TicketDto>(tickets);
     }
 
-    public async Task<TicketDto> GetTicketBtFilter(TicketFilterParams filterParams)
+    public async Task<TicketFilterResult> GetTicketByFilter(TicketFilterParams filterParams)
     {
         var result = _context.Tickets.AsQueryable();
         if (filterParams.UserId != null)
             result = result.Where(r => r.UserId == filterParams.UserId);
 
-        var pageId
+        var skip = (filterParams.PageId - 1) * filterParams.Take;
+        var data = new TicketFilterResult()
+        {
+            Data = await result.Skip(skip).Take(filterParams.Take)
+                .Select(n => new TicketFilterData
+                {
+                    Id = n.Id,
+                    UserId = n.UserId,
+                    Title = n.Title,
+                    Status = n.TicketStatus,
+                    CreationDate = n.CreationDate
+                }).ToListAsync()
+        };
+        data.GeneratePaging(result,filterParams.Take,filterParams.PageId);
+        return data;
     }
  }

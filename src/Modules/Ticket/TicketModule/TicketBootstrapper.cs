@@ -12,7 +12,7 @@ public static class TicketBootstrapper
     {
         services.AddDbContext<TicketContext>(option =>
         {
-            option.UseSqlServer(config.GetConnectionString("BlogContext"));
+            option.UseSqlServer(config.GetConnectionString("Ticket_Context"));
         });
         services.AddScoped<ITicketService, TicketService>();
         services.AddAutoMapper(typeof(MapperProfile).Assembly);
