@@ -16,6 +16,7 @@ public interface ITicketService
     Task<OperationResult> ClosedTicket(Guid ticketId);
 
     Task<TicketDto> GetTicket(Guid ticketId);
+    Task<TicketDto> GetTicketBtFilter(TicketFilterParams filterParams);
 }
 
  class TicketService : ITicketService
@@ -82,4 +83,13 @@ public interface ITicketService
             .FirstOrDefaultAsync(f => f.Id == ticketId);
         return _mapper.Map<TicketDto>(tickets);
     }
-}
+
+    public async Task<TicketDto> GetTicketBtFilter(TicketFilterParams filterParams)
+    {
+        var result = _context.Tickets.AsQueryable();
+        if (filterParams.UserId != null)
+            result = result.Where(r => r.UserId == filterParams.UserId);
+
+        var pageId
+    }
+ }

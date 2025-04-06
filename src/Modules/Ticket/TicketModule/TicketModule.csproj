@@ -24,6 +24,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\Common.Application\Common.Application.csproj" />
     <ProjectReference Include="..\..\..\Common\Common.Domain\Common.Domain.csproj" />
+    <ProjectReference Include="..\..\..\Common\Common.Infrastructure\Common.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\Common\Common.Query\Common.Query.csproj" />
   </ItemGroup>
 
 </Project>

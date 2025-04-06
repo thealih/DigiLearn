@@ -31,7 +31,11 @@ public class ChangeUserPasswordCommandHandler:IBaseCommandHandler<ChangeUserPass
 
         if (Sha256Hasher.IsCompare(user.Password , request.CurrentPassword))
         {
-            
+            var hashedPassword = Sha256Hasher.Hash(request.NewPassword);
+            user.Password = hashedPassword;
+            _userContext.Update(user);
+            await _userContext.SaveChangesAsync(cancellationToken);
+            return OperationResult.Success();
         }
 
         return OperationResult.Error("کلمه ی عبور نامعتبر است.");
