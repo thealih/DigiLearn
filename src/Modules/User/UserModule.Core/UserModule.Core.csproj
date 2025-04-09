@@ -27,6 +27,7 @@
 
 	<ItemGroup>
 	  <Folder Include="Commands\Roles\" />
+	  <Folder Include="Queries\Notifications\GetFilter\" />
 	  <Folder Include="Queries\Roles\" />
 	  <Folder Include="Queries\Users\GetById\" />
 	</ItemGroup>
