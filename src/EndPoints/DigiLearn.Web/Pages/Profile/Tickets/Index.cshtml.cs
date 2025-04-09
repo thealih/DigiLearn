@@ -24,7 +24,7 @@ namespace DigiLearn.Web.Pages.Profile.Tickets
             FilterResult =await _ticketService.GetTicketByFilter(new TicketFilterParams()
             {
                 UserId = User.GetUserId(),
-                Take = FilterParams.Take,
+                Take = 10,
                 PageId = FilterParams.PageId
             });
         }

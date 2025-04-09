@@ -12,10 +12,10 @@ namespace TicketModule.Core.Services;
 public interface ITicketService
 {
     Task<OperationResult<Guid>> CreateTicket(CreateTicketCommand command);
-    Task<OperationResult> SendMessageInTicket(SendTicketCommand command);
+    Task<OperationResult> SendMessageInTicket(SendTicketMessageCommand command);
     Task<OperationResult> ClosedTicket(Guid ticketId);
 
-    Task<TicketDto> GetTicket(Guid ticketId);
+    Task<TicketDto?> GetTicket(Guid ticketId);
     Task<TicketFilterResult> GetTicketByFilter(TicketFilterParams filterParams);
 }
 
@@ -38,11 +38,15 @@ public interface ITicketService
          return OperationResult<Guid>.Success(ticket.Id);
      }
 
-    public async Task<OperationResult> SendMessageInTicket(SendTicketCommand command)
+    public async Task<OperationResult> SendMessageInTicket(SendTicketMessageCommand command)
     {
         var ticket = await _context.Tickets.FirstOrDefaultAsync(f => f.Id == command.TicketId);
         if (ticket == null)
             return OperationResult.NotFound();
+        if (string.IsNullOrWhiteSpace(command.Text))
+        {
+            return OperationResult.Error("متن پیام را وارد کنید.");
+        }
         var message = new TicketMessage()
         {
             Text = command.Text.SanitizeText(),
@@ -76,7 +80,7 @@ public interface ITicketService
         return OperationResult.Success();
     }
 
-    public async Task<TicketDto> GetTicket(Guid ticketId)
+    public async Task<TicketDto?> GetTicket(Guid ticketId)
     {
         var tickets = await _context.Tickets
             .Include(c => c.Messages)
