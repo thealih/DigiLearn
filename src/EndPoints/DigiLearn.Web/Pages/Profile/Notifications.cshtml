@@ -1,4 +1,89 @@
-﻿@page
-@model DigiLearn.Web.Pages.Profile.NotificationsModel
+﻿@page "{handler?}"
+@using Common.Application.DateUtil
+@model NotificationsModel
 @{
+    ViewData["Title"] = "پیغام ها";
+}
+<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 breadcrumb">
+                <ul class="">
+                    <li>
+                        <a href="/">
+                            خانه
+                            <i class="fa fa-chevron-left"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/profile">
+                            پنل کاربری
+                            <i class="fa fa-chevron-left"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="current">
+                           @ViewData["Title"]
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+            <partial name="Shared/_ProfileSideBar"/>
+            <div class="col-12 col-xl-9 col-lg-9 col-md-8 profile-body">
+                <div class="info shadow pl-0 pr-0">
+                    <p class="title">
+                        <i class="zmdi zmdi-notifications text-warning"></i>
+                        @ViewData["Title"]
+                        <delete-item class="pull-left" data-toggle="tooltip" title="حذف همه" url="@Url.Page("Notification", "DeleteAll")">
+                            <i class="fa fa-trash-o text-danger" style="font-size: 25px;"></i>
+                        </delete-item>
+                    </p>
+
+                    <div class="info-body ">
+                        <div class="table-responsive">
+                            <table class="table text-center  table-hover  table-striped text-center">
+                                <thead>
+                                <tr>
+                                    <th>متن</th>
+                                    <th>تاریخ</th>
+                                    <td>
+                                    </td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach (var item in Model.FilterResult.Data)
+                                {
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                <b>
+                                                    @item.Title
+                                                </b>
+                                            </p>
+                                            <p>@item.Text</p>
+                                        </td>
+                                        <td>
+                                            @item.CreationDate.ToPersianDateTime()
+                                        </td>
+                                        <td>
+                                            <delete-item url="@Url.Page("Notifications", "DeleteNotification", new { id = item.Id })" data-toggle="tooltip" title="حذف" class="btn-sm">
+                                                <i class="fa fa-trash"></i>
+                                            </delete-item>
+                                        </td>
+                                    </tr>
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                      <partial name="Shared/_Pagination" model="Model.FilterResult"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section Script {
+
 }
