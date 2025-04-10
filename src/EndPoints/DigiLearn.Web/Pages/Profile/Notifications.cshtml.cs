@@ -3,6 +3,7 @@ using DigiLearn.Web.Infrastructure.RazorUtils;
 using Microsoft.AspNetCore.Mvc;
 using UserModule.Core.Commands.Notifications.Delete;
 using UserModule.Core.Commands.Notifications.DeleteAll;
+using UserModule.Core.Commands.Notifications.Seen;
 using UserModule.Core.Queries._DTOs;
 using UserModule.Core.Services;
 
@@ -28,6 +29,12 @@ public class NotificationsModel : BaseRazorFilter<NotificationFilterParams>
             Take = 6,
             UserId = User.GetUserId()
         });
+    }
+
+    public async Task<IActionResult> OnPostSeenNotification(Guid notificationId)
+    {
+        var result = await _notificationFacade.Seen(new SeenNotificationCommand(notificationId));
+        return RedirectAndShowAlert(result, RedirectToPage("Notifications"));
     }
 
     public async Task<IActionResult> OnPostDeleteAll()
